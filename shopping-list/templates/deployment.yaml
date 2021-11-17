@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "shopping-list.fullname" . }}
+  labels:
+    {{- include "shopping-list.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "shopping-list.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "shopping-list.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.container.envFrom }}
+          ports:
+            - containerPort: {{ .Values.container.containerPort }}
+          env:
+          - name: {{ .Values.container.envName }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.container.envKeyName }}
+                key: {{ .Values.container.envKeyValue }}
