@@ -46,14 +46,14 @@ pipeline {
             }
         }
 
-        // stage('Push') {
-        //     steps {
-        //         sh """
-        //             git add .
-        //             git commit -m "Updated app+nginx image tag to $NEW_VERSION"
-        //             git push
-        //         """
-        //     }
-        // }   
+        stage('Push') {
+            steps {
+                sh """
+                    git add .
+                    git commit -m "Updated app+nginx image tag to $NEW_VERSION"
+                    git push
+                """
+            }
+        }   
     }
 }
