@@ -12,22 +12,10 @@ pipeline {
     agent any
 
     stages {
-
-        // stage('Checkout') {
-        //     steps {
-        //         checkout scm
-        //     }
-        // }
-
-
         stage('Change image ArgoCD image tag') {
-            // when {
-            //     branch 'release/*'
-            // }
             steps {
                 script {
                     sshagent(['jenkins-ssh']) {
-                    sh "git checkout master"
                     echo "############### Change image ArgoCD image tag to $NEW_VERSION ################"
                     echo "############ Changing shopping list app image tag: ############"
                     OLD_TAG = sh(script: 'cat ./shopping-list/values.yaml | grep imageTag | cut -d " " -f 4', returnStdout: true).trim() 
@@ -55,7 +43,7 @@ pipeline {
                 sh """
                     git add .
                     git commit -m "Updated app+nginx image tag to $NEW_VERSION"
-                    git push
+                    git push -u origin master
                 """
             }
         }   
