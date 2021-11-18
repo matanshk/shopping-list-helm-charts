@@ -33,7 +33,8 @@ pipeline {
                     // sh " ./branch.sh ${env.BRANCH_NAME}"
                     // OLD_TAG = sh(script: 'echo $(cat ./ver.txt)', returnStdout: true).trim() 
                     sh "echo ############ Changing shopping list app image tag: ############"
-                    OLD_TAG="$(cat ./shopping-list/values.yaml | grep imageTag | cut -d ' ' -f 4)"
+                    // OLD_TAG="$(cat ./shopping-list/values.yaml | grep imageTag | cut -d ' ' -f 4)"
+                    NEW_TAG = sh(script: 'cat ./shopping-list/values.yaml | grep imageTag | cut -d ' ' -f 4', returnStdout: true).trim() 
                     sh """sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./shopping-list/values.yaml"""
                     sh "echo ###############################################################"
 
