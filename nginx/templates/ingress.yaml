@@ -3,12 +3,23 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: {{ .Values.ingress.ingressClass }}
-    cert-manager.io/issuer: {{ .Values.ingress.certManagerIssuer }}
+    # cert-manager.io/issuer: {{ .Values.ingress.certManagerIssuer }}
   name: {{ .Values.ingress.name }}
   namespace: default
 spec:
   rules:
     - host: {{ .Values.ingress.hostURL }}
+      http:
+        paths:
+          - path: {{ .Values.ingress.pathMain }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.ingress.serviceName }}
+                port: 
+                  number: {{ .Values.ingress.portNumber }}
+                  
+    - host: {{ .Values.ingress.hostURL2 }}
       http:
         paths:
           - path: {{ .Values.ingress.pathMain }}

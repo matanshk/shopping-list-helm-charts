@@ -54,6 +54,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   name: nginx-ingress
   hostURL: ii2g3t2-g25di89.tk
+  hostURL2: www.ii2g3t2-g25di89.tk
   pathMain: "/"
   serviceName: nginx
   portNumber: 80
