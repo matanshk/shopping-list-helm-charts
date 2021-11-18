@@ -28,28 +28,21 @@ pipeline {
                 script {
                     sshagent(['jenkins-ssh']) {
                     echo "############### Change image ArgoCD image tag to $NEW_VERSION ################"
-                    // sh "git status"
-                    // sh "git branch"      
-                    // sh " ./branch.sh ${env.BRANCH_NAME}"
-                    // OLD_TAG = sh(script: 'echo $(cat ./ver.txt)', returnStdout: true).trim() 
-                    sh "echo ############ Changing shopping list app image tag: ############"
-                    // OLD_TAG="$(cat ./shopping-list/values.yaml | grep imageTag | cut -d ' ' -f 4)"
+                    echo "############ Changing shopping list app image tag: ############"
                     OLD_TAG = sh(script: 'cat ./shopping-list/values.yaml | grep imageTag | cut -d " " -f 4', returnStdout: true).trim() 
                     sh """sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./shopping-list/values.yaml"""
-                    sh "echo ###############################################################"
+                    echo "###############################################################"
 
 
-                    sh "echo ################## Changing nginx image tag: ##################"
+                    echo "################## Changing nginx image tag: ##################"
                     OLD_TAG = sh(script: 'cat ./nginx/values.yaml | grep imageTag | cut -d " " -f 4', returnStdout: true).trim() 
-                    // OLD_TAG=$(cat ./nginx/values.yaml | grep imageTag | cut -d " " -f 4)
                     sh """sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./nginx/values.yaml"""
-                    sh "echo ###############################################################"
+                    echo "###############################################################"
 
 
 
                     sh " echo $OLD_TAG "
                     sh " echo $NEW_VERSION "
-                    // sh "git clean -f"
                     }                
                 }            
             }
