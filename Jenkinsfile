@@ -27,6 +27,7 @@ pipeline {
             steps {
                 script {
                     sshagent(['jenkins-ssh']) {
+                    sh "git checkout master"
                     echo "############### Change image ArgoCD image tag to $NEW_VERSION ################"
                     echo "############ Changing shopping list app image tag: ############"
                     OLD_TAG = sh(script: 'cat ./shopping-list/values.yaml | grep imageTag | cut -d " " -f 4', returnStdout: true).trim() 
