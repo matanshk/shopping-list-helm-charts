@@ -36,15 +36,15 @@ pipeline {
 
                     echo "Old TAG: $OLD_TAG "
                     echo "New TAG: $NEW_VERSION "
-                    
-                    echo "################## Changing nginx image tag: ##################"
+
+                    echo "################## Changing nginx image tag: $NEW_VERSION ##################"
                     OLD_TAG = sh(script: 'cat ./nginx/values.yaml | grep imageTag | cut -d " " -f 4', returnStdout: true).trim() 
                     sh """sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./nginx/values.yaml"""
-                    echo "###############################################################"
+                    echo "############################################################################"
 
 
                     echo "Old TAG: $OLD_TAG "
-
+                    echo "New TAG: $NEW_VERSION "
                     }                
                 }            
             }
