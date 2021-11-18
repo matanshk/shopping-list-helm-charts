@@ -32,21 +32,19 @@ pipeline {
                     // sh "git branch"      
                     // sh " ./branch.sh ${env.BRANCH_NAME}"
                     // OLD_TAG = sh(script: 'echo $(cat ./ver.txt)', returnStdout: true).trim() 
-                    sh """ 
-                    
-                    echo "############ Changing shopping list app image tag: ############"
+                    sh "echo ############ Changing shopping list app image tag: ############"
                     OLD_TAG=$(cat ./shopping-list/values.yaml | grep imageTag | cut -d " " -f 4)
-                    sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./shopping-list/values.yaml
-                    echo "###############################################################"
+                    sh """sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./shopping-list/values.yaml"""
+                    sh "echo ###############################################################"
 
 
-                    echo "################## Changing nginx image tag: ##################"
+                    sh "echo ################## Changing nginx image tag: ##################"
                     OLD_TAG=$(cat ./nginx/values.yaml | grep imageTag | cut -d " " -f 4)
-                    sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./nginx/values.yaml
-                    echo "###############################################################"
+                    sh """sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./nginx/values.yaml"""
+                    sh "echo ###############################################################"
 
 
-                    """
+
                     sh " echo $OLD_TAG "
                     sh " echo $NEW_VERSION "
                     // sh "git clean -f"
