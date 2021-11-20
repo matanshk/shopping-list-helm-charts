@@ -12,7 +12,7 @@ spec:
       http:
         paths:
           - path: {{ .Values.ingress.pathMain }}
-            pathType: Prefix
+            pathType: Exact
             backend:
               service:
                 name: {{ .Values.ingress.serviceName }}
@@ -23,7 +23,7 @@ spec:
       http:
         paths:
           - path: {{ .Values.ingress.pathMain }}
-            pathType: Prefix
+            pathType: Exact
             backend:
               service:
                 name: {{ .Values.ingress.serviceName }}
