@@ -59,16 +59,16 @@ configMap:
 
 ingress:
   enabled: true
-  className: ""
-  ingressClass: nginx
-  certManagerIssuer: "letsencrypt-prod2"
-    # kubernetes.io/tls-acme: "true"
-  name: app-ingress
-  hostURL: ii2g3t2-g25di89.tk
-  hostURL2: www.ii2g3t2-g25di89.tk
-  pathMain: "/app"
-  serviceName: shopping-list
-  portNumber: 5000
+  # className: ""
+  # ingressClass: nginx
+  # certManagerIssuer: "letsencrypt-prod2"
+  #   # kubernetes.io/tls-acme: "true"
+  # name: app-ingress
+  # hostURL: ii2g3t2-g25di89.tk
+  # hostURL2: www.ii2g3t2-g25di89.tk
+  # pathMain: "/app"
+  # serviceName: shopping-list
+  # portNumber: 5000
   # tls: []
   #  - secretName: chart-example-tls
   #    hosts:

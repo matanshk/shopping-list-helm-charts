@@ -2,33 +2,25 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClass }}
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # nginx.ingress.kubernetes.io/rewrite-target: /
     # cert-manager.io/issuer: {{ .Values.ingress.certManagerIssuer }}
-  name: {{ .Values.ingress.name }}
+  name: app-ingress
   namespace: default
 spec:
   rules:
-    - host: {{ .Values.ingress.hostURL }}
+    - host: app.ii2g3t2-g25di89.tk
       http:
         paths:
-          - path: {{ .Values.ingress.pathMain }}
-            pathType: Exact
+          - path: /
+            pathType: Prefix
             backend:
               service:
-                name: {{ .Values.ingress.serviceName }}
+                name: shopping-list
                 port: 
-                  number: {{ .Values.ingress.portNumber }}
-                  
-    - host: {{ .Values.ingress.hostURL2 }}
-      http:
-        paths:
-          - path: {{ .Values.ingress.pathMain }}
-            pathType: Exact
-            backend:
-              service:
-                name: {{ .Values.ingress.serviceName }}
-                port: 
-                  number: {{ .Values.ingress.portNumber }}
+                  number: 5000
+                
   # tls:
   #   - hosts: 
   #     - ii2g3t2-g25di89.tk
