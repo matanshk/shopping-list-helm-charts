@@ -12,19 +12,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Change image ArgoCD image tag') {
+        stage('Image tag for Shopping-List on GitOps') {
             steps {
                 script {
                     sshagent(['jenkins-ssh']) {
-                    sh """
                     echo "############### Change image ArgoCD image tag to $NEW_VERSION ################"
-                    """
                     OLD_TAG = sh(script: 'cat ./shopping-list/values.yaml | grep imageTag | cut -d " " -f 4', returnStdout: true).trim() 
                     sh """
-                    sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./shopping-list/values.yaml
-                    echo "###############################################################"
-                    echo "Old TAG: $OLD_TAG "
-                    echo "New TAG: $NEW_VERSION "
+                        sed -i "s/$OLD_TAG/$NEW_VERSION/g" ./shopping-list/values.yaml
+                        echo "###############################################################"
+                        echo "Old TAG: $OLD_TAG"
+                        echo "New TAG: $NEW_VERSION"
                     """
                     }                
                 }            

@@ -64,11 +64,6 @@ ingress:
   #      - www.ii2g3t2-g25di89.tk
   #      - ii2g3t2-g25di89.tk
 
-  # tls:
-  # - hosts:
-  #   - ii2g3t2-g25di89.tk
-  #   - www.ii2g3t2-g25di89.tk
-  #   secretName: nginx-tls-3
 
 
 
