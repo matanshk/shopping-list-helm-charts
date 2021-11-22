@@ -359,13 +359,13 @@ containers:
       - name: GF_SMTP_HOST
         value: "smtp.gmail.com:465"
       - name: GF_SMTP_PASSWORD
-        value: "1q2w3e$R"
+        value: "Aa123123123"
       - name: GF_SMTP_USER
-        value: "erezjenkins@gmail.com"
+        value: "matanchecker@gmail.com"
       - name: GF_SMTP_FROM_ADDRESS
-        value: "erezjenkins@gmail.com"
+        value: "matanchecker@gmail.com"
       - name: GF_SMTP_FROM_NAME
-        value: "Erez Grafana"
+        value: "Matan Shkalim"
       {{ if .Values.imageRenderer.enabled }}
       - name: GF_RENDERING_SERVER_URL
         value: http://{{ template "grafana.fullname" . }}-image-renderer.{{ template "grafana.namespace" . }}:{{ .Values.imageRenderer.service.port }}/render

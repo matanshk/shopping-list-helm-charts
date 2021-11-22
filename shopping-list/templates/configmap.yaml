@@ -6,4 +6,3 @@ data:
   PORT: {{ quote .Values.configMap.PORT }}
   DEBUG: {{ quote .Values.configMap.DEBUG }}
   HOST: {{ quote .Values.configMap.HOST }}
-  # MONGO_URL: 'mongodb://matan:Password1@mongodb:27017/mydb?authSource=mydb'

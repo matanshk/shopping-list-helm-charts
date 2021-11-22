@@ -606,7 +606,7 @@ controller:
   metrics:
     port: 10254
     # if this port is changed, change healthz-port: in extraArgs: accordingly
-    enabled: true #erez
+    enabled: true 
 
     service:
       annotations: #{}
@@ -629,7 +629,7 @@ controller:
       # nodePort: ""
 
     serviceMonitor:
-      enabled: true #erez
+      enabled: true 
       additionalLabels: #{}
         release: kube-prometheus-stack
       # The label to use to retrieve the job name from.
